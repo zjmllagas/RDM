@@ -46,6 +46,10 @@ adx_contentsnippet:
   DisplayName: Account/ConfirmEmail/ConfirmEmailFormHeading
   CheckSum: c1275878d487976e6738291135704e4924de9e8a2d9211e85c33fa8948ebe538
   IsDeleted: false
+- RecordId: 2d862d93-1530-ee11-bdf3-000d3aca6cb5
+  DisplayName: CP - Sample 2
+  CheckSum: 721b90b82279540057f8d3c5b633c3963525bff56a40fca95c1dc0bd1bdd72e2
+  IsDeleted: false
 - RecordId: 2df56e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Header/Search/Label
   CheckSum: d62964f5a440fed792080e427a4fc4d7d7bfc4eb0eddedc31c8555eb2223f7b4
