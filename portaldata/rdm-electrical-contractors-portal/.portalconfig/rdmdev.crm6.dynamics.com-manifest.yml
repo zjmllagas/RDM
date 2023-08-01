@@ -334,6 +334,10 @@ adx_contentsnippet:
   DisplayName: Profile/SecurityNav/Title
   CheckSum: 22b6941add71e0cfdb2fb38573f386ce602ccb66cb7b5f116afddc63ebffd8bc
   IsDeleted: false
+- RecordId: e84b29b0-1530-ee11-bdf3-000d3aca6cb5
+  DisplayName: EC - Sample 2
+  CheckSum: 2b39eac1ee4bd77c03dadf6ab538006bbaeee9dfad52e01fc8b4eed9051c1142
+  IsDeleted: false
 - RecordId: f36ca8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Account/Conversion/PageTitle
   CheckSum: b032f86c5774ef3a4d46944e04bc467e4ddf0d71c8fa4e6dcd0109d69c75e8e4
