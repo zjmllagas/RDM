@@ -1,0 +1,210 @@
+name: eql_cmx_portal_cicd_main_pipeline.yml
+
+run-name: Triggered by @${{ github.actor }}
+
+on:
+  release:
+    types: [created]
+    
+  workflow_dispatch:
+  
+
+jobs:
+  build:
+    strategy:
+      max-parallel: 1
+      matrix:
+        target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@main
+    with:      
+      solution_name: ${{ matrix.target }}
+      branch_name: solution
+      solution_exported_folder: out/exported/
+      solution_folder: out/solutions/
+      solution_target_folder: solutions/
+    secrets: 
+      dev_url: ${{ secrets.dev_url }}
+      dev_client_id: ${{ secrets.dev_client_id }}
+      dev_tenant_id: ${{ secrets.dev_tenant_id }}  
+      dev_secrets_id: ${{ secrets.dev_secrets_id }}
+          
+  release-to-build-env:
+    strategy:
+        max-parallel: 1
+        matrix:
+          target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+    needs: [ build ]
+    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_build_env.yml@main
+    with:
+      solution_name: ${{ matrix.target }}
+      branch_name: solution
+      solution_shipping_folder: out/ship/
+      solution_outbound_folder: out/solutions/
+      solution_source_folder: solutions/
+      solution_release_folder: out/release
+    secrets:
+      build_url: ${{ secrets.build_url }}
+      build_client_id: ${{ secrets.build_client_id }}
+      build_secrets_id: ${{ secrets.build_secrets_id }}
+      build_tenant_id: ${{ secrets.build_tenant_id }}
+  
+  portal-data-to-build-env:
+    needs: [ release-to-build-env ]
+    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
+    with:
+      portal_name: cmx-electrical-contractors-portal
+    secrets:
+      website_id: ${{ secrets.website_id }} 
+      dev_url: ${{ secrets.dev_url }}
+      dev_client_id: ${{ secrets.dev_client_id }}
+      dev_secrets_id: ${{ secrets.dev_secrets_id }}
+      dev_tenant_id: ${{ secrets.dev_tenant_id }}
+      build_url: ${{ secrets.build_url }}
+      build_client_id: ${{ secrets.build_client_id }}
+      build_secrets_id: ${{ secrets.build_secrets_id }}
+      build_tenant_id: ${{ secrets.build_tenant_id }}
+
+  customer-portal-data-to-build-env:
+    needs: [ release-to-build-env ]
+    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_build_env.yml@main
+    with:
+      portal_name: cmx-customer-portal
+    secrets:
+      customer_website_id: ${{ secrets.customer_website_id }} 
+      dev_url: ${{ secrets.dev_url }}
+      dev_client_id: ${{ secrets.dev_client_id }}
+      dev_secrets_id: ${{ secrets.dev_secrets_id }}
+      dev_tenant_id: ${{ secrets.dev_tenant_id }}
+      build_url: ${{ secrets.build_url }}
+      build_client_id: ${{ secrets.build_client_id }}
+      build_secrets_id: ${{ secrets.build_secrets_id }}
+      build_tenant_id: ${{ secrets.build_tenant_id }}
+         
+  release-to-sit-env:
+    strategy:
+      max-parallel: 1
+      matrix:
+        target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+    needs: [ release-to-build-env ]
+    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml@main
+    with:
+      solution_name: ${{ matrix.target }}
+      solution_release_folder: out/release
+    secrets:
+      sit_url: ${{ secrets.sit_url }}
+      sit_client_id: ${{ secrets.sit_client_id }}
+      sit_secrets_id: ${{ secrets.sit_secrets_id }}
+      sit_tenant_id: ${{ secrets.sit_tenant_id }}
+    
+  portal-data-to-sit-env:
+      needs: [ release-to-sit-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_sit_env.yml@main
+      with:
+        portal_name: cmx-electrical-contractors-portal
+      secrets:
+        website_id: ${{ secrets.website_id }} 
+        build_url: ${{ secrets.build_url }}
+        build_client_id: ${{ secrets.build_client_id }}
+        build_secrets_id: ${{ secrets.build_secrets_id }}
+        build_tenant_id: ${{ secrets.build_tenant_id }}
+        sit_url: ${{ secrets.sit_url }}
+        sit_client_id: ${{ secrets.sit_client_id }}
+        sit_secrets_id: ${{ secrets.sit_secrets_id }}
+        sit_tenant_id: ${{ secrets.sit_tenant_id }} 
+
+  customer-portal-data-to-sit-env:
+      needs: [ release-to-sit-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_sit_env.yml@main
+      with:
+        portal_name: cmx-customer-portal
+      secrets:
+        customer_website_id: ${{ secrets.customer_website_id }} 
+        build_url: ${{ secrets.build_url }}
+        build_client_id: ${{ secrets.build_client_id }}
+        build_secrets_id: ${{ secrets.build_secrets_id }}
+        build_tenant_id: ${{ secrets.build_tenant_id }}
+        sit_url: ${{ secrets.sit_url }}
+        sit_client_id: ${{ secrets.sit_client_id }}
+        sit_secrets_id: ${{ secrets.sit_secrets_id }}
+        sit_tenant_id: ${{ secrets.sit_tenant_id }}  
+      
+  release-to-data-migration-env:
+    strategy:
+      max-parallel: 1
+      matrix:
+        target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+    needs: [ release-to-build-env ]
+    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml@main
+    with:
+      solution_name: ${{ matrix.target }}
+      solution_release_folder: out/release
+    secrets:
+      data_migration_url: ${{ secrets.data_migration_url }}
+      data_migration_client_id: ${{ secrets.data_migration_client_id }}
+      data_migration_secrets_id: ${{ secrets.data_migration_secrets_id }}
+      data_migration_tenant_id: ${{ secrets.data_migration_tenant_id }}
+      
+      
+  portal-data-to-dm-env:
+      needs: [ release-to-data-migration-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_pipeline_to_dm_env.yml@main
+      secrets:
+        website_id: ${{ secrets.website_id }} 
+        build_url: ${{ secrets.build_url }}
+        build_client_id: ${{ secrets.build_client_id }}
+        build_secrets_id: ${{ secrets.build_secrets_id }}
+        build_tenant_id: ${{ secrets.build_tenant_id }}
+        data_migration_url: ${{ secrets.data_migration_url }}
+        data_migration_client_id: ${{ secrets.data_migration_client_id }}
+        data_migration_secrets_id: ${{ secrets.data_migration_secrets_id }}
+        data_migration_tenant_id:  ${{ secrets.data_migration_tenant_id }}  
+
+  release-to-uat-env:
+      strategy:
+        max-parallel: 1
+        matrix:
+          target: [CMX10WebResources, CMX20Customizing, CMX30Plugins, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+      needs: [ release-to-sit-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@main
+      with:
+        solution_name: ${{ matrix.target }}
+        solution_release_folder: out/release
+      secrets:
+        uat_url: ${{ secrets.uat_url }}
+        uat_client_id: ${{ secrets.uat_client_id }}
+        uat_secrets_id: ${{ secrets.uat_secrets_id }}
+        uat_tenant_id: ${{ secrets.uat_tenant_id }}
+        
+  portal-data-to-uat-env:
+      needs: [ release-to-uat-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_uat_env.yml@main
+      secrets:
+        uat_url: ${{ secrets.uat_url }}
+        uat_client_id: ${{ secrets.uat_client_id }}
+        uat_secrets_id: ${{ secrets.uat_secrets_id }}
+        uat_tenant_id: ${{ secrets.uat_tenant_id }}
+  
+  release-to-prod-env:
+      strategy:
+        max-parallel: 1
+        matrix:
+          target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+      needs: [ release-to-uat-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_prod_env.yml@main
+      with:
+        solution_name: ${{ matrix.target }}
+        solution_release_folder: out/release
+      secrets:
+        prod_url: ${{ secrets.prod_url }}
+        prod_client_id: ${{ secrets.prod_client_id }}
+        prod_secrets_id: ${{ secrets.prod_secrets_id }}
+        prod_tenant_id: ${{ secrets.prod_tenant_id }}
+
+  portal-data-to-prod-env:
+      needs: [ release-to-prod-env ]
+      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml@main
+      secrets:
+        prod_url: ${{ secrets.prod_url }}
+        prod_client_id: ${{ secrets.prod_client_id }}
+        prod_secrets_id: ${{ secrets.prod_secrets_id }}
+        prod_tenant_id: ${{ secrets.prod_tenant_id }}
