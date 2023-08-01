@@ -1,0 +1,104 @@
+name: eql_cmx_portal_cicd_release_pipeline_to_build_env.yml
+# prepare for releasing to prod:
+#   convert solution to managed (using a build PowerPlatform environment for the conversion)
+#   upload the solution to the GitHub artifacts and deploy to the PROD environment
+
+on:
+  workflow_call :
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution'
+        required: true
+        type: string
+      branch_name:
+        description: 'name of the branch created'
+        required: true
+        type: string
+      #Do Not change these values
+      solution_shipping_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        type: string
+        default: out/ship/
+      solution_outbound_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        type: string
+        default: out/solutions/
+      solution_source_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       type: string
+       default: solutions/
+      solution_release_folder:
+       description: 'folder where the released binaries are going to be hosted *do not change*'
+       type: string
+       default: out/release
+    secrets:
+      build_url:
+        description: 'Build environment url.'
+        required: true      
+      build_client_id: 
+        description: 'The build client id'
+        required: true
+      build_secrets_id:
+        description: 'The secret value for authentication for build'
+        required: true
+      build_tenant_id: 
+        description: 'The tenant id'
+        required: true
+        
+jobs:   
+  import-to-build:
+    runs-on: windows-latest
+    environment: build
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+
+    - name: git config to accept long paths
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git config --system core.longpaths true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+        ref: develop
+
+    - name: pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v0
+      with:
+        solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        solution-type: Unmanaged
+        
+    - name: Import solution as unmanaged to build env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ secrets.build_url }}
+        app-id: ${{ secrets.build_client_id }}
+        client-secret: ${{ secrets.build_secrets_id }}
+        tenant-id: ${{ secrets.build_tenant_id }}
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        force-overwrite: true
+        publish-changes: true
+        run-asynchronously: true
+
+    - name: export solution as managed from buid env
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ secrets.build_url }}
+        app-id: ${{ secrets.build_client_id }}
+        client-secret: ${{ secrets.build_secrets_id }}
+        tenant-id: ${{ secrets.build_tenant_id }}
+        solution-name: ${{ inputs.solution_name }}
+        managed: true
+        solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
+      
+    - name: Upload the ready to ship solution to GH artifact store
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.solution_name }}
+        path: ${{ inputs.solution_shipping_folder}}${{ inputs.solution_name }}_managed.zip
