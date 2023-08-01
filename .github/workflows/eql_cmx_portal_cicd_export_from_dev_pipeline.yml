@@ -1,0 +1,169 @@
+name: eql_cmx_portal_cicd_export_from_dev_pipeline.yml
+# Export solution from DEV environment
+#  unpack it and prepare, commit and push a git branch with the changes
+
+on:
+  workflow_call:
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        type: string
+      branch_name:
+        description: 'name of the branch created'
+        required: true
+        type: string        
+       #Do Not change these values
+      solution_exported_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+        type: string
+      solution_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        required: true
+        default: out/solutions/
+        type: string
+      solution_target_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       required: true
+       default: solutions/
+       type: string
+    secrets:
+      dev_url:
+        description: 'Dev environment url.'
+        required: true      
+      dev_client_id: 
+        description: 'The client id dev'
+        required: true
+      dev_tenant_id: 
+        description: 'The tenant id'
+        required: true
+      dev_secrets_id:
+        description: 'The secret value for authentication using SPN'
+        required: true      
+
+jobs:
+  export-from-dev:
+    environment: dev    
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+
+      - name: git config to accept long paths
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+                        
+      - name: export solution from dev
+        uses: microsoft/powerplatform-actions/export-solution@v0
+        with:
+          environment-url: ${{ secrets.dev_url }}
+          app-id: ${{ secrets.dev_client_id }}
+          client-secret: ${{ secrets.dev_secrets_id }}
+          tenant-id: ${{ secrets.dev_tenant_id }}  
+          solution-name: ${{ inputs.solution_name }}
+          solution-output-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+          
+      - name: check solution
+        uses: microsoft/powerplatform-actions/check-solution@v0
+        with:
+          environment-url: ${{ secrets.dev_url }}
+          app-id: ${{ secrets.dev_client_id }}
+          client-secret: ${{ secrets.dev_secrets_id }}
+          tenant-id: ${{ secrets.dev_tenant_id }}
+          path: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+          checker-logs-artifact-name: ${{ inputs.solution_name }}
+        
+      - name: unpack solution
+        uses: microsoft/powerplatform-actions/unpack-solution@v0
+        with:
+          solution-file: ${{ inputs.solution_exported_folder}}/${{ inputs.solution_name }}.zip
+          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+          solution-type: 'Unmanaged'
+          overwrite-files: true
+
+      - name: update solution version
+        shell: pwsh
+        run: |
+          [xml]$XmlDocument = Get-Content -Path ${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml
+          $OldVersion = $XmlDocument.GetElementsByTagName('Version')
+          [version]$Version = $OldVersion[0].'#text' 
+          [version]$NewVersion = "{0}.{1}.{2}.{3}" -f $Version.Major, $Version.Minor, $Version.Build, ($Version.Revision + 1)
+          $OldVersion[0].'#text'  = $NewVersion.ToString()
+          $XmlDocument.Save('${{ inputs.solution_folder}}/${{ inputs.solution_name }}/Other/Solution.xml')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: branch solution
+        uses: microsoft/powerplatform-actions/branch-solution@v0
+        with:
+          solution-folder: ${{ inputs.solution_folder}}/${{ inputs.solution_name }}
+          solution-target-folder: ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-empty-commit: true
+          branch-name: ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+          clobber-branch: true
+
+      - name: fetch develop branch
+        run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --system core.longpaths true
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+          git pull origin develop --allow-unrelated-histories --strategy-option ours
+          git commit -m "Merge with develop branch"
+          git push
+
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: create pull request
+        run: |
+          gh pr create -B develop -H ${{ inputs.branch_name }}-${{ inputs.solution_name }} --title 'Merge ${{ inputs.branch_name }} into develop' --body 'Created by Github action'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: merge pull requests
+        run: |          
+          gh pr merge --admin --merge --delete-branch ${{ inputs.branch_name }}-${{ inputs.solution_name }}
+        env:
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            
+      - name: download check-solution logs
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ inputs.solution_name }}
+          path: logs/${{ inputs.solution_name }}
+          
+      - name: push check-solution logs to branch
+        run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git fetch --no-tags --prune --depth=1 origin
+          git checkout develop
+          mkdir ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          copy logs/${{ inputs.solution_name }} ${{ inputs.solution_target_folder}}/${{ inputs.solution_name }}/logs
+          git add logs
+          git pull origin
+          git commit -m "Added Logs to branch"
+          git push
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Display structure of downloaded files
+        run: ls -R
+      
