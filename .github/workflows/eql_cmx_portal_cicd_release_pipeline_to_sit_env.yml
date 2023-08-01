@@ -1,0 +1,69 @@
+name: eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml
+# prepare for releasing to sit:
+
+on:
+  workflow_call :
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution'
+        required: true
+        type: string
+      #Do Not change these values
+      solution_release_folder:
+       description: 'folder where the released binaries are going to be hosted *do not change*'
+       type: string
+       default: out/release
+    secrets:
+      sit_url:
+        description: 'SIT environment url.'
+        required: true      
+      sit_client_id:
+        description: 'The sit client id'
+        required: true
+      sit_secrets_id:
+        description: 'The secret value for authentication for sit'
+        required: true
+      sit_tenant_id: 
+        description: 'The tenant id'
+        required: true
+        
+jobs:
+  sit:
+    runs-on: windows-latest
+    environment: sit
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+
+    - name: git config to accept long paths
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git config --system core.longpaths true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: Fetch the ready to ship solution from GH artifact store
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.solution_name }}
+        path: ${{ inputs.solution_release_folder}}
+        
+    - name: Import solution to sit env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{ secrets.sit_url }}
+        app-id: ${{ secrets.sit_client_id }}
+        client-secret: ${{ secrets.sit_secrets_id }}
+        tenant-id: ${{ secrets.sit_tenant_id }}
+        solution-name: ${{ inputs.solution_name }}
+        solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
+        convert-to-managed: true
+        force-overwrite: true
+        publish-changes: true
+        run-asynchronously: true
