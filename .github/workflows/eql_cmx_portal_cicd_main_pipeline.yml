@@ -14,8 +14,8 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
-    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@main
+        target: [RDM20Customizing]
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_export_from_dev_pipeline.yml@main
     with:      
       solution_name: ${{ matrix.target }}
       branch_name: solution
@@ -32,9 +32,9 @@ jobs:
     strategy:
         max-parallel: 1
         matrix:
-          target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+          target: [RDM20Customizing]
     needs: [ build ]
-    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_build_env.yml@main
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_build_env.yml@main
     with:
       solution_name: ${{ matrix.target }}
       branch_name: solution
@@ -50,7 +50,7 @@ jobs:
   
   portal-data-to-build-env:
     needs: [ release-to-build-env ]
-    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
     with:
       portal_name: cmx-electrical-contractors-portal
     secrets:
@@ -66,7 +66,7 @@ jobs:
 
   customer-portal-data-to-build-env:
     needs: [ release-to-build-env ]
-    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_build_env.yml@main
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_build_env.yml@main
     with:
       portal_name: cmx-customer-portal
     secrets:
@@ -84,9 +84,9 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+        target: [RDM20Customizing]
     needs: [ release-to-build-env ]
-    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml@main
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_sit_env.yml@main
     with:
       solution_name: ${{ matrix.target }}
       solution_release_folder: out/release
@@ -98,7 +98,7 @@ jobs:
     
   portal-data-to-sit-env:
       needs: [ release-to-sit-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_sit_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_sit_env.yml@main
       with:
         portal_name: cmx-electrical-contractors-portal
       secrets:
@@ -114,7 +114,7 @@ jobs:
 
   customer-portal-data-to-sit-env:
       needs: [ release-to-sit-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_sit_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_sit_env.yml@main
       with:
         portal_name: cmx-customer-portal
       secrets:
@@ -132,9 +132,9 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+        target: [RDM20Customizing]
     needs: [ release-to-build-env ]
-    uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml@main
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_data_migration_env.yml@main
     with:
       solution_name: ${{ matrix.target }}
       solution_release_folder: out/release
@@ -147,7 +147,7 @@ jobs:
       
   portal-data-to-dm-env:
       needs: [ release-to-data-migration-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_pipeline_to_dm_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_pipeline_to_dm_env.yml@main
       secrets:
         website_id: ${{ secrets.website_id }} 
         build_url: ${{ secrets.build_url }}
@@ -165,7 +165,7 @@ jobs:
         matrix:
           target: [CMX10WebResources, CMX20Customizing, CMX30Plugins, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
       needs: [ release-to-sit-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_uat_env.yml@main
       with:
         solution_name: ${{ matrix.target }}
         solution_release_folder: out/release
@@ -177,7 +177,7 @@ jobs:
         
   portal-data-to-uat-env:
       needs: [ release-to-uat-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_uat_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_uat_env.yml@main
       secrets:
         uat_url: ${{ secrets.uat_url }}
         uat_client_id: ${{ secrets.uat_client_id }}
@@ -188,9 +188,9 @@ jobs:
       strategy:
         max-parallel: 1
         matrix:
-          target: [CMX10WebResources, CMX20Customizing, CMX30Plugin, CMX40Workflows, CMX50Flows, CMX60Templates, CMX70CanvasApp]
+          target: [RDM20Customizing]
       needs: [ release-to-uat-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_prod_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_release_pipeline_to_prod_env.yml@main
       with:
         solution_name: ${{ matrix.target }}
         solution_release_folder: out/release
@@ -202,7 +202,7 @@ jobs:
 
   portal-data-to-prod-env:
       needs: [ release-to-prod-env ]
-      uses: Energy-Queensland-Limited/CMX-D365/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml@main
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_prod_env.yml@main
       secrets:
         prod_url: ${{ secrets.prod_url }}
         prod_client_id: ${{ secrets.prod_client_id }}
