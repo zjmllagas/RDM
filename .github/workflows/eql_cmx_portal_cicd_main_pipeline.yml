@@ -140,5 +140,18 @@ jobs:
         sit_client_id: ${{ secrets.sit_client_id }}
         sit_secrets_id: ${{ secrets.sit_secrets_id }}
         sit_tenant_id: ${{ secrets.sit_tenant_id }}  
+        
+  reference-data-to-sit-env:
+      needs: [ release-to-sit-env ]
+      uses: zjmllagas/RDM/.github/workflows/eql_cmx_reference_data_import_to_sit.yaml@main
+      secrets:
+        build_url: ${{ secrets.build_url }}
+        build_client_id: ${{ secrets.build_client_id }}
+        build_secrets_id: ${{ secrets.build_secrets_id }}
+        build_tenant_id: ${{ secrets.build_tenant_id }}
+        sit_url: ${{ secrets.sit_url }}
+        sit_client_id: ${{ secrets.sit_client_id }}
+        sit_secrets_id: ${{ secrets.sit_secrets_id }}
+        sit_tenant_id: ${{ secrets.sit_tenant_id }} 
       
  
