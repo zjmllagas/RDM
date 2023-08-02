@@ -14,13 +14,25 @@ adx_adplacement_ad:
   CheckSum: 2acda10c3a87925e92235264f7c63c40cb724de22e2560caa27c9ccc3207043e
   IsDeleted: false
 adx_contentsnippet:
+- RecordId: 257636ad-da30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Logo URL
+  CheckSum: e1e2d44090997949a3f51fcba0ce30a0c173803de554608cd26a28e87637b0da
+  IsDeleted: false
 - RecordId: 25f56e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Account/Conversion/PageTitle
   CheckSum: 98b89997d3f24ae8a0d52daf19d47fe98ad2132892afd2d3a9c9a9486903ed48
   IsDeleted: false
+- RecordId: 267636ad-da30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Site name
+  CheckSum: a352d47ec76f6b4569db595c7c5bb3f7078c2d6b72bc64e45b521a8117f22f84
+  IsDeleted: false
 - RecordId: 26f56e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Search/Facet/SortOrder/Relevance
   CheckSum: d05f91a2a6ac6f5c45771852da5f9b37bca7b041c4f378185ef75535b1f9be14
+  IsDeleted: false
+- RecordId: 277636ad-da30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Logo alt text
+  CheckSum: bf941742aec10087a727e54c6c91203c366a2a3836e0a915ae8d1e175681cece
   IsDeleted: false
 - RecordId: 27f56e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Account/Signin/MinorWithoutParentalConsentNotAllowedCopy
@@ -1070,6 +1082,10 @@ adx_webtemplate:
 - RecordId: 23f66e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Page Copy
   CheckSum: 6f940927f06b20c4fea63f03a694516eeca6a12da6b3d6dac3969d54bee4be50
+  IsDeleted: false
+- RecordId: 247636ad-da30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Power Virtual Agents
+  CheckSum: 1d9cd82fccdbc5e7162c64bec6d9b8cb5eaf8dafa671158903efd2f0ac2c7285
   IsDeleted: false
 - RecordId: 24f66e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Page with Side Navigation (2 columns)
