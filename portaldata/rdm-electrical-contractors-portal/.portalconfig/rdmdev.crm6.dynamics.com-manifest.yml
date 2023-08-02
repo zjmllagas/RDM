@@ -873,6 +873,10 @@ adx_webfile:
   DisplayName: Wave background.png
   CheckSum: 9b51eb912d5a72a3b784c20f0e547d7974ac794d9b2f4070f170f3593f4919db
   IsDeleted: false
+- RecordId: eac8ff6e-8b5d-41f1-8fc4-6a7fdaf21359
+  DisplayName: thumbnail.css
+  CheckSum: 209f6ab58e6efaf41fb8644262d5b5ff62516034257fc68e8e26fc15e1754581
+  IsDeleted: false
 adx_weblink:
 - RecordId: c36da8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Profile
@@ -1249,6 +1253,10 @@ adx_webtemplate:
   CheckSum: ebffafe2cab2250fdea6c92f9dae1560129f875d0234863fb1181babc24db1f4
   IsDeleted: false
 annotation:
+- RecordId: 0ccad687-e5b9-43a4-9577-5a54dd0ec110
+  DisplayName: thumbnail.css
+  CheckSum: ff94a4c2f54bab92ebab2f4273feddfb1d0595ae1f0e0c9230c4a61b635193a3
+  IsDeleted: false
 - RecordId: 1d6ea8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Logo.png
   CheckSum: dcd04384f3606becf31ae4b172d8272f3704424e209a034722f83f2924e69487
