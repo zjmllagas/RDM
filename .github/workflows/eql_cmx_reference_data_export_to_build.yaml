@@ -1,4 +1,4 @@
-name: eql_cmx_reference_data_export_dev.yaml
+name: eql_cmx_reference_data_export_to_build.yaml
 
 run-name: Triggered by @${{ github.actor }}
 
