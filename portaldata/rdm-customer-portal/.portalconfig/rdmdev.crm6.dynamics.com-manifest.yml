@@ -414,6 +414,10 @@ adx_contentsnippet:
   DisplayName: Account/Sign In/Username Label
   CheckSum: 46eb18e6dac8fbda13d5c3fdb244e96664d0c4fb8794aa22b332ffacaf6d02ec
   IsDeleted: false
+- RecordId: 922447cf-1a31-ee11-bdf3-000d3aca6cb5
+  DisplayName: AB
+  CheckSum: 1556addfc9a60ccd12cbd12b072e50d833e049c18079bbbe04304ed7142f3be1
+  IsDeleted: false
 - RecordId: e49c4b3e-0b31-ee11-bdf3-000d3aca6cb5
   DisplayName: A
   CheckSum: 331aa3d5a48813ac54763332ddc707066cec6cddd1d8d63cb1bf19890f71c97a
