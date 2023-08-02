@@ -63,7 +63,7 @@ jobs:
     - name: Upload the ready to ship portal-data to GH artifact store
       uses: actions/upload-artifact@v2
       with:
-        name: build-portaldata
+        name: ec-portaldata
         path: portaldata/rdm-electrical-contractors-portal
         
   upload-portal-data-to-sit-env:
@@ -81,7 +81,7 @@ jobs:
     - name: Fetch the ready to ship solution from GH artifact store
       uses: actions/download-artifact@v2
       with:
-        name: build-portaldata
+        name: ec-portaldata
         path: portaldata/rdm-electrical-contractors-portal
 
     - name: Display List of Directories
