@@ -106,6 +106,10 @@ adx_contentsnippet:
   DisplayName: Account/SignIn/SignInExternalFormHeading
   CheckSum: fd05911657b6e259ddb82687df1af8ce3870d0de2ca57bc5998d1d74d01279ff
   IsDeleted: false
+- RecordId: 16033f61-fc30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Deployment Test - EC
+  CheckSum: 5fd0e63042ee99a608b496d2165d7e600723f986b1e5d80557334a2c22690587
+  IsDeleted: false
 - RecordId: 166da8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Header/Toggle Navigation
   CheckSum: b9fdc677b9244da55cb2ad525f63d991a356d95f60b4d73ee7faf8ed74d051f4
