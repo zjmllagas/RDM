@@ -56,7 +56,6 @@ jobs:
         
     - name: push reference data to branch
       run: |
-          ls -d */
           git --version
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
