@@ -67,10 +67,6 @@ jobs:
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Display structure of downloaded files
-      run: ls -R
-        
-
   upload-reference-data-to-build-env:
     needs: [ download-reference-data-from-dev-env ]
     runs-on:  windows-latest
@@ -83,10 +79,6 @@ jobs:
       with:
         lfs: true
         ref: develop
-  
-    - name: Display List of Directories
-      run: |
-          ls -d */
       env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
