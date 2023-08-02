@@ -64,7 +64,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-portaldata
-        path: portaldata/cmx-customer-portal
+        path: portaldata/rdm-customer-portal
         
   upload-portal-data-to-sit-env:
     needs: [ download-portal-data-from-build-env ]
