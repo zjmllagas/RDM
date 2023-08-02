@@ -102,6 +102,10 @@ adx_contentsnippet:
   DisplayName: Profile/MarketPhone
   CheckSum: 1eb93e826715a66e5952ff0a0a0958591e79e9a6f0dbb1148c19540ddc6a4f9a
   IsDeleted: false
+- RecordId: 37707754-fc30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Deployment Test - CP
+  CheckSum: 2089332233b37a61c2fecd1250e9630320509f3886dccd6ba4b4d43bad2891db
+  IsDeleted: false
 - RecordId: 37f56e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Search/Facet/SortOrder/Views
   CheckSum: a601cc848f6ac5facc0a1e9ff5544f00168c47d4f1ce6462d3b228b4285db2c7
