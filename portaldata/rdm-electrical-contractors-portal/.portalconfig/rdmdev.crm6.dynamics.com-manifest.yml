@@ -350,6 +350,10 @@ adx_contentsnippet:
   DisplayName: Logo URL
   CheckSum: 61419e8aa6035d797af342672ffe887c5727081b7ca22fee2686ecaabb8453dc
   IsDeleted: false
+- RecordId: bd1b5ab3-0731-ee11-bdf3-000d3aca6cb5
+  DisplayName: deployment  test - ec
+  CheckSum: 0e24d155a976e48865127b5773bfb1faa3865a76b20b9373bbf687ffff91ac6c
+  IsDeleted: false
 - RecordId: e84b29b0-1530-ee11-bdf3-000d3aca6cb5
   DisplayName: EC - Sample 2
   CheckSum: 2b39eac1ee4bd77c03dadf6ab538006bbaeee9dfad52e01fc8b4eed9051c1142
@@ -879,7 +883,7 @@ adx_webfile:
   IsDeleted: false
 - RecordId: eac8ff6e-8b5d-41f1-8fc4-6a7fdaf21359
   DisplayName: thumbnail.css
-  CheckSum: 209f6ab58e6efaf41fb8644262d5b5ff62516034257fc68e8e26fc15e1754581
+  CheckSum: e66c91c9d0e5f622a264b7d6e1c75b79d366810fd9fc35aa805644e4a28b931b
   IsDeleted: false
 adx_weblink:
 - RecordId: c36da8bd-9f2f-ee11-bdf3-000d3aca6cb5
@@ -1259,7 +1263,7 @@ adx_webtemplate:
 annotation:
 - RecordId: 0ccad687-e5b9-43a4-9577-5a54dd0ec110
   DisplayName: thumbnail.css
-  CheckSum: ff94a4c2f54bab92ebab2f4273feddfb1d0595ae1f0e0c9230c4a61b635193a3
+  CheckSum: a3fd0c9ad1e7becc9e16508f77f683ed1aaabbb9209a91bbb44468ee4d93676a
   IsDeleted: false
 - RecordId: 1d6ea8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Logo.png
