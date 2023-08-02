@@ -32,7 +32,7 @@ on:
 
 jobs:
   download-reference-data-from-dev-env:
-    runs-on:  ubuntu-latest
+    runs-on:  windows-latest
     environment: dev
     env:
       RUNNER_DEBUG: 1
@@ -74,7 +74,7 @@ jobs:
 
   upload-reference-data-to-build-env:
     needs: [ download-reference-data-from-dev-env ]
-    runs-on:  ubuntu-latest
+    runs-on:  windows-latest
     environment: build
     env:
       RUNNER_DEBUG: 1
