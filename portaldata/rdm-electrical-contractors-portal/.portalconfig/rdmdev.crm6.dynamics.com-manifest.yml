@@ -334,6 +334,18 @@ adx_contentsnippet:
   DisplayName: Profile/SecurityNav/Title
   CheckSum: 22b6941add71e0cfdb2fb38573f386ce602ccb66cb7b5f116afddc63ebffd8bc
   IsDeleted: false
+- RecordId: 82d15f05-db30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Logo alt text
+  CheckSum: a03c2fa0fb0a299e707b3db3d8d49cd920d6a513f93f70f72b600712d73bc8c8
+  IsDeleted: false
+- RecordId: 83d15f05-db30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Site name
+  CheckSum: b54f03ce7083d4208635dadb88ad025a3c8dedf83dbcfc78eb8136276cd60cd9
+  IsDeleted: false
+- RecordId: 84d15f05-db30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Logo URL
+  CheckSum: 61419e8aa6035d797af342672ffe887c5727081b7ca22fee2686ecaabb8453dc
+  IsDeleted: false
 - RecordId: e84b29b0-1530-ee11-bdf3-000d3aca6cb5
   DisplayName: EC - Sample 2
   CheckSum: 2b39eac1ee4bd77c03dadf6ab538006bbaeee9dfad52e01fc8b4eed9051c1142
@@ -1151,6 +1163,10 @@ adx_webtemplate:
 - RecordId: 166ea8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Faceted Search - Facets Template
   CheckSum: 484e4cb764ca2d16e3bcbb164c47aea77d46ee4239c51cea31d93de8bc67e714
+  IsDeleted: false
+- RecordId: 81d15f05-db30-ee11-bdf3-000d3aca6cb5
+  DisplayName: Power Virtual Agents
+  CheckSum: 4aef21a6f8bfe781cae979cd70283cc168aa109e55f27de326c3e0943b964cfc
   IsDeleted: false
 - RecordId: ec6da8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Random Poll
