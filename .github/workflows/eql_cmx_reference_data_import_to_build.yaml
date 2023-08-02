@@ -1,4 +1,4 @@
-name: eql_cmx_reference_data_export_to_build.yaml
+name: eql_cmx_reference_data_import_to_build.yaml
 
 run-name: Triggered by @${{ github.actor }}
 
@@ -51,7 +51,7 @@ jobs:
         client-secret: ${{ secrets.dev_secrets_id }}
         tenant-id: ${{ secrets.dev_tenant_id }}
         schema-file: schema-file/rdm-reference-data.xml
-        data-file: referencedata/data.zip
+        data-file: referencedata
         overwrite: true
         
     - name: push reference data to branch
