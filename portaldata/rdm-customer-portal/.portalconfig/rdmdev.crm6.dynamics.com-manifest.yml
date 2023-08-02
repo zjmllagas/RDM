@@ -210,6 +210,10 @@ adx_contentsnippet:
   DisplayName: Account/ChangeEmail/EmailLabel
   CheckSum: 5f99c3605dbe9685e3c847ed9e65bc216a47bd2d292c8780ec4d4d293768a663
   IsDeleted: false
+- RecordId: 50335cab-0731-ee11-bdf3-000d3aca6cb5
+  DisplayName: deployment  test - cp
+  CheckSum: a3506d7533b933cc3c5f074945fd8b7f3251634623efa8996c037d6d7a33fb6d
+  IsDeleted: false
 - RecordId: 50f56e9d-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Search/Facet/RecordType
   CheckSum: 63a57d53e63b0f3814f58cfaff51d52c5232dbe611443faf9a4faaf633b5fdd7
