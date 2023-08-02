@@ -42,6 +42,10 @@ adx_contentsnippet:
   DisplayName: Account/SignIn/PasswordLabel
   CheckSum: a40b8e4c14b4232788943d685e71e18bd9c67fb59c55aed68d17481c606e5c86
   IsDeleted: false
+- RecordId: 05b1e9a2-3931-ee11-bdf3-000d3aca6cb5
+  DisplayName: ABCD
+  CheckSum: 1085384005eac3cde2ef59643d6d827030db5472c89a3ffb4584b6edaafdf19e
+  IsDeleted: false
 - RecordId: 066da8bd-9f2f-ee11-bdf3-000d3aca6cb5
   DisplayName: Portal Generic Error
   CheckSum: 7fe1df9d09836896e10d0488d9befb55c334af5bc4dcb93c80e4c3f5700696d1
