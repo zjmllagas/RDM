@@ -82,7 +82,7 @@ jobs:
 
   reference-data-to-build-env:
     needs: [ release-to-build-env ]
-    uses: zjmllagas/RDM/.github/workflows/eql_cmx_reference_data_export_to_build.yaml@main
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_reference_data_import_to_build.yaml@main
     secrets:
       dev_url: ${{ secrets.dev_url }}
       dev_client_id: ${{ secrets.dev_client_id }}
