@@ -14,6 +14,10 @@ adx_adplacement_ad:
   CheckSum: 2acda10c3a87925e92235264f7c63c40cb724de22e2560caa27c9ccc3207043e
   IsDeleted: false
 adx_contentsnippet:
+- RecordId: 0872e698-3931-ee11-bdf3-000d3aca6cb5
+  DisplayName: ABCD
+  CheckSum: 37060c201e785c10df32b0488f1f169b6d96b4c11450e300767945d470bd3265
+  IsDeleted: false
 - RecordId: 22d87124-1831-ee11-bdf3-000d3aca6cb5
   DisplayName: B
   CheckSum: edd7a5dbd7c23c04b66b18c8a3d78dfe8f85ce4d87d0c875855a6c91f799291e
