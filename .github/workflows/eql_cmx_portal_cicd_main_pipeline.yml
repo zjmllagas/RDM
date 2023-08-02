@@ -52,7 +52,7 @@ jobs:
     needs: [ release-to-build-env ]
     uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_portal_data_pipeline_to_build_env.yml@main
     with:
-      portal_name: cmx-electrical-contractors-portal
+      portal_name: rdm-electrical-contractors-portal
     secrets:
       website_id: ${{ secrets.website_id }} 
       dev_url: ${{ secrets.dev_url }}
@@ -68,7 +68,7 @@ jobs:
     needs: [ release-to-build-env ]
     uses: zjmllagas/RDM/.github/workflows/eql_cmx_portal_cicd_transport_customer_portal_data_pipeline_to_build_env.yml@main
     with:
-      portal_name: cmx-customer-portal
+      portal_name: rdm-customer-portal
     secrets:
       customer_website_id: ${{ secrets.customer_website_id }} 
       dev_url: ${{ secrets.dev_url }}
