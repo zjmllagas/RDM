@@ -1,4 +1,4 @@
-name: eql_cmx_reference_data_migration_to_sit.yaml
+name: eql_cmx_reference_data_import_to_sit.yaml
 
 on:
   workflow_call :
