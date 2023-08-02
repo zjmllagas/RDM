@@ -51,7 +51,7 @@ jobs:
         client-secret: ${{ secrets.dev_secrets_id }}
         tenant-id: ${{ secrets.dev_tenant_id }}
         schema-file: schema-file/rdm-reference-data.xml
-        data-file: referencedata
+        data-file: referencedata/data.zip
         overwrite: true
         
     - name: push reference data to branch
