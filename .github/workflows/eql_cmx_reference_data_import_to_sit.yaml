@@ -56,7 +56,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-referencedata
-        path: referencedata
+        path: referencedata/data
         
   upload-reference-data-to-sit-env:
     needs: [ download-reference-data-from-build-env ]
