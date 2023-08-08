@@ -63,6 +63,9 @@ jobs:
     - uses: actions/checkout@v3
       with:
         lfs: true
+        ref: build
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: import-data
       uses: microsoft/powerplatform-actions/import-data@v0
@@ -71,4 +74,4 @@ jobs:
         app-id: ${{ secrets.sit_client_id }}
         client-secret: ${{ secrets.sit_secrets_id }}
         tenant-id: ${{ secrets.sit_tenant_id }}
-        data-file: data.zip
+        data-file: referencedata/data.zip
