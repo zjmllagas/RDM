@@ -40,6 +40,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         lfs: true
+        ref: build
         
     - name: export-data
       uses: microsoft/powerplatform-actions/export-data@v0
@@ -51,6 +52,19 @@ jobs:
         schema-file: schema-file/rdm-reference-data.xml
         data-file: referencedata/data
         overwrite: true
+
+    - name: push reference data to branch
+      run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git status
+          git pull origin
+          git add referencedata
+          git commit -m "Added referencedata to branch"
+          git push
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   upload-reference-data-to-sit-env:
     needs: [ download-reference-data-from-build-env ]
