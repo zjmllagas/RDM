@@ -71,4 +71,4 @@ jobs:
         app-id: ${{ secrets.sit_client_id }}
         client-secret: ${{ secrets.sit_secrets_id }}
         tenant-id: ${{ secrets.sit_tenant_id }}
-        data-file: referencedata/data.zip
+        data-file: data.zip
