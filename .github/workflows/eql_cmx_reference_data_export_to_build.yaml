@@ -1,0 +1,93 @@
+name: eql_cmx_reference_data_export_to_build.yaml
+
+run-name: Triggered by @${{ github.actor }}
+
+on:
+  workflow_call :
+    secrets:
+      dev_url:
+        description: 'reference_data environment url.'
+        required: true      
+      dev_client_id:
+        description: 'The reference_data client id'
+        required: true
+      dev_secrets_id:
+        description: 'The secret value for authentication for reference_data'
+        required: true
+      dev_tenant_id:
+        description: 'The tenant id'
+        required: true
+      build_url:
+        description: 'reference_data environment url.'
+        required: true      
+      build_client_id:
+        description: 'The reference_data client id'
+        required: true
+      build_secrets_id:
+        description: 'The secret value for authentication for reference_data'
+        required: true
+      build_tenant_id: 
+        description: 'The tenant id'
+        required: true
+
+jobs:
+  download-reference-data-from-dev-env:
+    runs-on:  windows-latest
+    environment: dev
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        ref: develop
+        
+    - name: export-data
+      uses: microsoft/powerplatform-actions/export-data@v0
+      with:
+        environment-url: ${{ secrets.dev_url }}
+        app-id: ${{ secrets.dev_client_id }}
+        client-secret: ${{ secrets.dev_secrets_id }}
+        tenant-id: ${{ secrets.dev_tenant_id }}
+        schema-file: schema-file/rdm-reference-data.xml
+        data-file: referencedata/data.zip
+        overwrite: true
+        
+    - name: push reference data to branch
+      run: |
+          git --version
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git status
+          git pull origin
+          git add referencedata
+          git commit -m "Added referencedata to branch"
+          git push
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  upload-reference-data-to-build-env:
+    needs: [ download-reference-data-from-dev-env ]
+    runs-on:  windows-latest
+    environment: build
+    env:
+      RUNNER_DEBUG: 1
+    steps:
+
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        ref: develop
+      env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
+    - name: import-data
+      uses: microsoft/powerplatform-actions/import-data@v0
+      with:
+        environment-url: ${{ secrets.build_url }}
+        app-id: ${{ secrets.build_client_id }}
+        client-secret: ${{ secrets.build_secrets_id }}
+        tenant-id: ${{ secrets.build_tenant_id }}
+        data-file: referencedata
