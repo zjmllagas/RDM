@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_rdm_tariff" />
+  <EntityRelationship Name="business_unit_rdm_tariffcompatiblerule" />
+  <EntityRelationship Name="business_unit_rdm_tariffrule" />
+  <EntityRelationship Name="lk_rdm_tariff_createdby" />
+  <EntityRelationship Name="lk_rdm_tariff_modifiedby" />
+  <EntityRelationship Name="lk_rdm_tariffcompatiblerule_createdby" />
+  <EntityRelationship Name="lk_rdm_tariffcompatiblerule_modifiedby" />
+  <EntityRelationship Name="lk_rdm_tariffrule_createdby" />
+  <EntityRelationship Name="lk_rdm_tariffrule_modifiedby" />
+  <EntityRelationship Name="owner_rdm_tariff" />
+  <EntityRelationship Name="owner_rdm_tariffcompatiblerule" />
+  <EntityRelationship Name="owner_rdm_tariffrule" />
+  <EntityRelationship Name="rdm_tariffcompatiblerule_compatibletariff" />
+  <EntityRelationship Name="rdm_tariffcompatiblerule_tariff" />
+  <EntityRelationship Name="rdm_validtariffrule_tariffid" />
+  <EntityRelationship Name="team_rdm_tariff" />
+  <EntityRelationship Name="team_rdm_tariffcompatiblerule" />
+  <EntityRelationship Name="team_rdm_tariffrule" />
+  <EntityRelationship Name="user_rdm_tariff" />
+  <EntityRelationship Name="user_rdm_tariffcompatiblerule" />
+  <EntityRelationship Name="user_rdm_tariffrule" />
+</EntityRelationships>

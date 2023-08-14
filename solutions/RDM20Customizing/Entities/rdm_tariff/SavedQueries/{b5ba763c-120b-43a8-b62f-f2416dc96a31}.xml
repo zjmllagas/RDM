@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{b5ba763c-120b-43a8-b62f-f2416dc96a31}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="rdm_name" select="1" icon="1" preview="1">
+        <row name="result" id="rdm_tariffid">
+          <cell name="rdm_tariffcode" width="105" />
+          <cell name="rdm_name" width="100" />
+          <cell name="rdm_isprimaryorsecondary" width="177" />
+          <cell name="rdm_dnsp" width="100" />
+          <cell name="rdm_hascontrolledloadappliances" width="219" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="rdm_tariff">
+          <attribute name="rdm_tariffid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="rdm_tariffcode" />
+          <attribute name="rdm_name" />
+          <attribute name="rdm_isprimaryorsecondary" />
+          <attribute name="rdm_dnsp" />
+          <attribute name="rdm_hascontrolledloadappliances" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Tariffs" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
