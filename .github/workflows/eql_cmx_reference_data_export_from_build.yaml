@@ -35,7 +35,7 @@ jobs:
     - name: export-data
       uses: microsoft/powerplatform-actions/export-data@v0
       with:
-        environment-url: ${{ secrets.dev_url }}
+        environment-url: ${{ secrets.build_url }}
         app-id: ${{ secrets.build_client_id }}
         client-secret: ${{ secrets.build_secrets_id }}
         tenant-id: ${{ secrets.build_tenant_id }}
