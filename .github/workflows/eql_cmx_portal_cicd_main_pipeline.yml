@@ -27,7 +27,16 @@ jobs:
       dev_client_id: ${{ secrets.dev_client_id }}
       dev_tenant_id: ${{ secrets.dev_tenant_id }}  
       dev_secrets_id: ${{ secrets.dev_secrets_id }}
-          
+
+  reference-data-import-to-dev-env:
+  needs: [ build ]
+  uses: zjmllagas/RDM/.github/workflows/eql_cmx_reference_data_import_to_dev.yaml@main
+  secrets:
+      dev_url: ${{ secrets.dev_url }}
+      dev_client_id: ${{ secrets.dev_client_id }}
+      dev_tenant_id: ${{ secrets.dev_tenant_id }}  
+      dev_secrets_id: ${{ secrets.dev_secrets_id }}
+  
   release-to-build-env:
     strategy:
         max-parallel: 1
@@ -95,6 +104,15 @@ jobs:
       sit_client_id: ${{ secrets.sit_client_id }}
       sit_secrets_id: ${{ secrets.sit_secrets_id }}
       sit_tenant_id: ${{ secrets.sit_tenant_id }}
+      
+  reference-data-import-to-sit-env:
+    needs: [ release-to-sit-env ]
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_reference_data_import_to_sit.yaml@main
+    secrets:
+      sit_url: ${{ secrets.sit_url }}
+      sit_client_id: ${{ secrets.sit_client_id }}
+      sit_tenant_id: ${{ secrets.sit_tenant_id }}  
+      sit_secrets_id: ${{ secrets.sit_secrets_id }}
     
   portal-data-to-sit-env:
       needs: [ release-to-sit-env ]
@@ -127,7 +145,3 @@ jobs:
         sit_client_id: ${{ secrets.sit_client_id }}
         sit_secrets_id: ${{ secrets.sit_secrets_id }}
         sit_tenant_id: ${{ secrets.sit_tenant_id }}  
-        
-        sit_tenant_id: ${{ secrets.sit_tenant_id }} 
-      
- 
