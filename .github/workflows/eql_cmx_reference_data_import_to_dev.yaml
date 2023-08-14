@@ -42,4 +42,4 @@ jobs:
         app-id: ${{ secrets.dev_client_id }}
         client-secret: ${{ secrets.dev_secrets_id }}
         tenant-id: ${{ secrets.dev_tenant_id }}
-        data-file: referencedata
+        data-file: referencedata/data
