@@ -1,4 +1,4 @@
-name: eql_cmx_portal_main_pipeline_for_reference_data_export.yml
+name: eql_cmx_reference_main_pipeline_for_reference_data_export.yml
 
 run-name: Triggered by @${{ github.actor }}
 
