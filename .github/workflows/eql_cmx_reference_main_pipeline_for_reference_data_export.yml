@@ -1,0 +1,16 @@
+name: eql_cmx_reference_main_pipeline_for_reference_data_export.yml
+
+run-name: Triggered by @${{ github.actor }}
+
+on:    
+  workflow_dispatch:
+  
+
+jobs:
+  reference-data-to-build-env:
+    uses: zjmllagas/RDM/.github/workflows/eql_cmx_reference_data_export_from_build.yaml@main
+    secrets:
+      build_url: ${{ secrets.build_url }}
+      build_client_id: ${{ secrets.build_client_id }}
+      build_secrets_id: ${{ secrets.build_secrets_id }}
+      build_tenant_id: ${{ secrets.build_tenant_id }}
