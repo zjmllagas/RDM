@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.23073.158" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.23074.180" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>RDM20Customizing</UniqueName>
     <LocalizedNames>
@@ -125,7 +125,14 @@
         </Address>
       </Addresses>
     </Publisher>
-    <RootComponents />
+    <RootComponents>
+      <RootComponent type="1" schemaName="rdm_tariff" behavior="0" />
+      <RootComponent type="1" schemaName="rdm_tariffcompatiblerule" behavior="0" />
+      <RootComponent type="1" schemaName="rdm_tariffrule" behavior="0" />
+      <RootComponent type="9" schemaName="rdm_dnsp" behavior="0" />
+      <RootComponent type="9" schemaName="rdm_installtype" behavior="0" />
+      <RootComponent type="9" schemaName="rdm_metertype" behavior="0" />
+    </RootComponents>
     <MissingDependencies />
   </SolutionManifest>
 </ImportExportXml>
