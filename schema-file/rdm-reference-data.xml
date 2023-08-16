@@ -1,4 +1,27 @@
 <entities >
+    <entity name="rdm_tariff" displayname="Tariff" etc="10731" primaryidfield="rdm_tariffid" primarynamefield="rdm_name" disableplugins="false">
+    <fields>
+      <field displayname="Created By" name="createdby" type="entityreference" lookupType="systemuser" />
+      <field displayname="Created By (Delegate)" name="createdonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field displayname="Created On" name="createdon" type="datetime" />
+      <field displayname="DNSP" name="rdm_dnsp" type="optionsetvalue" customfield="true" />
+      <field displayname="Has controlled load appliances?" name="rdm_hascontrolledloadappliances" type="bool" customfield="true" />
+      <field displayname="Import Sequence Number" name="importsequencenumber" type="number" />
+      <field displayname="Is Primary or Secondary" name="rdm_isprimaryorsecondary" type="optionsetvalue" customfield="true" />
+      <field displayname="Modified By" name="modifiedby" type="entityreference" lookupType="systemuser" />
+      <field displayname="Modified By (Delegate)" name="modifiedonbehalfby" type="entityreference" lookupType="systemuser" />
+      <field displayname="Modified On" name="modifiedon" type="datetime" />
+      <field displayname="Name" name="rdm_name" type="string" customfield="true" />
+      <field displayname="Record Created On" name="overriddencreatedon" type="datetime" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="Status Reason" name="statuscode" type="status" />
+      <field displayname="Tariff" name="rdm_tariffid" type="guid" primaryKey="true" />
+      <field displayname="Tariff Code" name="rdm_tariffcode" type="string" customfield="true" />
+      <field displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
+      <field displayname="UTC Conversion Time Zone Code" name="utcconversiontimezonecode" type="number" />
+      <field displayname="Version Number" name="versionnumber" type="bigint" />
+    </fields>
+  </entity>
   <entity name="rdm_tariffcompatiblerule" displayname="Tariff Compatible Rule" etc="10786" primaryidfield="rdm_tariffcompatibleruleid" primarynamefield="rdm_name" disableplugins="false">
     <fields>
       <field displayname="Compatible Tariff" name="rdm_compatibletariff" type="entityreference" lookupType="rdm_tariff" customfield="true" />
@@ -17,29 +40,6 @@
       <field displayname="Status Reason" name="statuscode" type="status" />
       <field displayname="Tariff" name="rdm_tariff" type="entityreference" lookupType="rdm_tariff" customfield="true" />
       <field displayname="Tariff Compatible Rule" name="rdm_tariffcompatibleruleid" type="guid" primaryKey="true" />
-      <field displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
-      <field displayname="UTC Conversion Time Zone Code" name="utcconversiontimezonecode" type="number" />
-      <field displayname="Version Number" name="versionnumber" type="bigint" />
-    </fields>
-  </entity>
-  <entity name="rdm_tariff" displayname="Tariff" etc="10731" primaryidfield="rdm_tariffid" primarynamefield="rdm_name" disableplugins="false">
-    <fields>
-      <field displayname="Created By" name="createdby" type="entityreference" lookupType="systemuser" />
-      <field displayname="Created By (Delegate)" name="createdonbehalfby" type="entityreference" lookupType="systemuser" />
-      <field displayname="Created On" name="createdon" type="datetime" />
-      <field displayname="DNSP" name="rdm_dnsp" type="optionsetvalue" customfield="true" />
-      <field displayname="Has controlled load appliances?" name="rdm_hascontrolledloadappliances" type="bool" customfield="true" />
-      <field displayname="Import Sequence Number" name="importsequencenumber" type="number" />
-      <field displayname="Is Primary or Secondary" name="rdm_isprimaryorsecondary" type="optionsetvalue" customfield="true" />
-      <field displayname="Modified By" name="modifiedby" type="entityreference" lookupType="systemuser" />
-      <field displayname="Modified By (Delegate)" name="modifiedonbehalfby" type="entityreference" lookupType="systemuser" />
-      <field displayname="Modified On" name="modifiedon" type="datetime" />
-      <field displayname="Name" name="rdm_name" type="string" customfield="true" />
-      <field displayname="Record Created On" name="overriddencreatedon" type="datetime" />
-      <field displayname="Status" name="statecode" type="state" />
-      <field displayname="Status Reason" name="statuscode" type="status" />
-      <field displayname="Tariff" name="rdm_tariffid" type="guid" primaryKey="true" />
-      <field displayname="Tariff Code" name="rdm_tariffcode" type="string" customfield="true" />
       <field displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
       <field displayname="UTC Conversion Time Zone Code" name="utcconversiontimezonecode" type="number" />
       <field displayname="Version Number" name="versionnumber" type="bigint" />
