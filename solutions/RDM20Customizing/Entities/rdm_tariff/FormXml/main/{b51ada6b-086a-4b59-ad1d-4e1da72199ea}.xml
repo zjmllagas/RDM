@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b51ada6b-086a-4b59-ad1d-4e1da72199ea}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{781c11a0-888d-4552-9294-3de73c45b6e7}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{29a3a4bd-9648-41da-9e77-f9327179e4a2}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{78920e84-92c0-46cf-b6ec-200a02b3f50d}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="rdm_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rdm_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3727ddab-be87-4e54-bf12-70eea10d45f9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Is Primary or Secondary" languagecode="1033" />
+                        </labels>
+                        <control id="rdm_isprimaryorsecondary" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="rdm_isprimaryorsecondary" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{69defd3d-62c0-42d3-8982-32b547d37436}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Tariff Code" languagecode="1033" />
+                        </labels>
+                        <control id="rdm_tariffcode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rdm_tariffcode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6fc0ed8-428a-474a-afeb-b17ed218f648}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="DNSP" languagecode="1033" />
+                        </labels>
+                        <control id="rdm_dnsp" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="rdm_dnsp" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8c7f4f03-0d89-41b5-ba6b-eb4bf9e9227d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Has controlled load appliances?" languagecode="1033" />
+                        </labels>
+                        <control id="rdm_hascontrolledloadappliances" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="rdm_hascontrolledloadappliances" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{6139c735-f15e-471b-a25f-6abef46400b8}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Compatible Tariffs" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>rdm_tariffcompatiblerule</TargetEntityType>
+                            <ViewId>{7EC804E3-14FB-4B79-BCC1-C13F23B7FB0A}</ViewId>
+                            <ViewIds>{7EC804E3-14FB-4B79-BCC1-C13F23B7FB0A}</ViewIds>
+                            <RelationshipName></RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{73cc36b8-d051-40bb-97d7-8861eb319e42}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{4dbe2541-f724-4345-be69-3094f24e2dfa}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{1cc319d1-5a31-4aca-8d86-fbd26f852e36}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c147845d-ec64-4fb6-a63d-0961cac26f59}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2f5ae498-214c-4189-8c9a-ec7bd33ee5a7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{37b2e486-ced3-468b-9b9a-938f47442453}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{ef4d782e-74f4-4622-97e7-353602c72adf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c8559f26-6a27-44f4-be5b-53f3677c11ed}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2e21243d-a26c-4236-ba9d-7b25881a23f3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
